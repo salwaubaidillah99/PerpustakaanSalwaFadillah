@@ -1,14 +1,8 @@
 package com.salwafadillah.TugasAkhirSinauKoding.service.Impl;
 
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Anggota;
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Pengembalian;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.Petugas;
-import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PengembalianDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PetugasDTO;
-import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.PengembalianMapping;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.PetugasMapping;
-import com.salwafadillah.TugasAkhirSinauKoding.repository.AnggotaRepository;
-import com.salwafadillah.TugasAkhirSinauKoding.repository.PengembalianRepository;
 import com.salwafadillah.TugasAkhirSinauKoding.repository.PetugasRepository;
 import com.salwafadillah.TugasAkhirSinauKoding.service.PetugasService;
 import org.springframework.beans.factory.annotation.Autowired;

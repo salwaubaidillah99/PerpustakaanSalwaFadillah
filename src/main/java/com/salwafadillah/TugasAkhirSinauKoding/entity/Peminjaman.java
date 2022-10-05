@@ -21,5 +21,12 @@ public class Peminjaman {
     @Column
     private Date tglKembali;
 
+    @ManyToOne
+    @JoinColumn(name = "id_anggota")
+    private Anggota anggota;
+
+    @ManyToOne
+    @JoinColumn(name = "id_petugas")
+    private Petugas petugas;
 
 }

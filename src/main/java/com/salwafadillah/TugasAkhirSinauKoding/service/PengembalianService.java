@@ -1,7 +1,5 @@
 package com.salwafadillah.TugasAkhirSinauKoding.service;
 
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Peminjaman;
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Pengembalian;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PengembalianDTO;
 
 import java.util.List;

@@ -1,12 +1,18 @@
 package com.salwafadillah.TugasAkhirSinauKoding.service.Impl;
 
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Peminjaman;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.*;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.BukuDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PeminjamanDTO;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.AnggotaMapping;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.BukuMapping;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.PeminjamanMapping;
-import com.salwafadillah.TugasAkhirSinauKoding.repository.PeminjamanRepository;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.PengarangMapping;
+import com.salwafadillah.TugasAkhirSinauKoding.repository.*;
 import com.salwafadillah.TugasAkhirSinauKoding.service.PeminjamanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -15,18 +21,37 @@ public class PeminjamanServiceImpl implements PeminjamanService {
     @Autowired
     private PeminjamanRepository repository;
 
+    @Autowired
+    AnggotaRepository anggotaRepository;
+
+    @Autowired
+    private PetugasRepository petugasRepository;
+
+    @Transactional
     @Override
     public PeminjamanDTO save(PeminjamanDTO param) {
-        Peminjaman data = repository.save(PeminjamanMapping.instance.toEntity(param));
+        Anggota anggota = AnggotaMapping.instance.toEntity(param.getAnggota());
+
+        Peminjaman data = PeminjamanMapping.instance.toEntity(param);
+
+        if (param.getAnggota() != null) {
+            anggota = anggotaRepository.save(anggota);
+
+            data.getAnggota().setId(anggota.getId());
+        }
+
+        data = repository.save(data);
+
         return PeminjamanMapping.instance.toDto(data);
     }
-
+    @Transactional
     @Override
     public List<PeminjamanDTO> findAllData()
     {
         return PeminjamanMapping.instance.toListDto(repository.findAll());
-    }
 
+    }
+    @Transactional
     @Override
     public PeminjamanDTO update(PeminjamanDTO param, Long id) {
         Peminjaman data = repository.findById(id).orElse(null);

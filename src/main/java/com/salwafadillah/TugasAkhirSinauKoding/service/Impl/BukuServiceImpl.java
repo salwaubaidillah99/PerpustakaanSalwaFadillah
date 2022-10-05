@@ -27,6 +27,9 @@ public class BukuServiceImpl implements BukuService {
     private BukuRepository repository;
 
     @Autowired
+    PenerbitRepository penerbitRepository;
+
+    @Autowired
     private PengarangRepository pengarangRepository;
 
     @Transactional

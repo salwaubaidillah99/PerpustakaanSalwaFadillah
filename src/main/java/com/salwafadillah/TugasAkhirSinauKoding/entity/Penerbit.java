@@ -3,6 +3,7 @@ package com.salwafadillah.TugasAkhirSinauKoding.entity;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "penerbits")
@@ -18,10 +19,14 @@ public class Penerbit {
     private String namaPenerbit;
 
     @Column
-    private String alamat;
+    private String noTelp;
 
     @Column
-    private String noTelp;
+    private String alamat;
+
+
+    @OneToMany(mappedBy = "penerbit")
+    private List<Buku> bukuList;
 
 
 

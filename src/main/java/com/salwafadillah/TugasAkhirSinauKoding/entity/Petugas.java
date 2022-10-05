@@ -3,6 +3,7 @@ package com.salwafadillah.TugasAkhirSinauKoding.entity;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "petugass")
@@ -23,6 +24,11 @@ public class Petugas {
     @Column
     private String alamat;
 
+    @OneToMany(mappedBy = "petugas")
+    private List<Peminjaman> peminjamanList;
+
+    @OneToMany(mappedBy = "petugas")
+    private List<Pengembalian> pengembalianList;
 
 
 }

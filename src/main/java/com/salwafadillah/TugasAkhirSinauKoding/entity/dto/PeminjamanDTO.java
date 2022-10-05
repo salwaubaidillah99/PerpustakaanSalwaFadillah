@@ -13,4 +13,8 @@ public class PeminjamanDTO {
 
     private Date tglKembali;
 
+    private AnggotaDTO anggota;
+
+    private PetugasDTO petugas;
+
 }

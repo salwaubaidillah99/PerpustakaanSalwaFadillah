@@ -31,6 +31,10 @@ public class Buku {
     @JoinColumn(name = "id_pengarang")
     private Pengarang pengarang;
 
+    @ManyToOne
+    @JoinColumn(name = "id_penerbit")
+    private Penerbit penerbit;
+
 
 
 

@@ -19,4 +19,6 @@ public class BukuDTO {
     private String isbn;
 
     private PengarangDTO pengarang;
+
+    private PenerbitDTO penerbit;
 }

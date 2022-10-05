@@ -1,10 +1,7 @@
 package com.salwafadillah.TugasAkhirSinauKoding.controller;
 
 
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Peminjaman;
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Pengembalian;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PengembalianDTO;
-import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.PeminjamanServiceImpl;
 import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.PengembalianServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
