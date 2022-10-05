@@ -1,6 +1,5 @@
 package com.salwafadillah.TugasAkhirSinauKoding.controller;
 
-
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PengembalianDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.PengembalianServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pengembalians")
-
 public class PengembalianController {
     @Autowired
     private PengembalianServiceImpl service;
