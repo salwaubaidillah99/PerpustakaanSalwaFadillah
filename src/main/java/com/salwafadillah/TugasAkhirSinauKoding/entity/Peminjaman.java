@@ -1,9 +1,12 @@
 package com.salwafadillah.TugasAkhirSinauKoding.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "peminjamans")
@@ -28,5 +31,14 @@ public class Peminjaman {
     @ManyToOne
     @JoinColumn(name = "id_petugas")
     private Petugas petugas;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "peminjamanDetail",
+            joinColumns = @JoinColumn(name="peminjaman_id"),
+            inverseJoinColumns = @JoinColumn(name ="buku_id"))
+            Set<Peminjaman>detailPeminjaman=new HashSet<>();
+
 
 }
