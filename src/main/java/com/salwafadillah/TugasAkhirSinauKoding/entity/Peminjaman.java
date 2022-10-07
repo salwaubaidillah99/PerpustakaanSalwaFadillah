@@ -34,12 +34,12 @@ public class Peminjaman  {
     private Petugas petugas;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "peminjamanDetail",
-            joinColumns = @JoinColumn(name="peminjaman_id"),
-            inverseJoinColumns = @JoinColumn(name ="buku_id"))
-    Set<Peminjaman>detailPeminjaman=new HashSet<>();
+                name = "peminjamanDetail",
+                joinColumns = @JoinColumn(name="peminjaman_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name ="buku_id", referencedColumnName = "id"))
+                Set<Peminjaman>detailPeminjaman=new HashSet<>();
 
 
 }
