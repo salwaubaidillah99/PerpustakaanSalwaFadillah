@@ -1,5 +1,6 @@
 package com.salwafadillah.TugasAkhirSinauKoding.controller;
 
+import com.salwafadillah.TugasAkhirSinauKoding.common.Response;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PeminjamanDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.PeminjamanServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,20 @@ public class PeminjamanController {
     private PeminjamanServiceImpl service;
 
     @GetMapping("/find-all")
-    public ResponseEntity<?>findAllData(){
-        return new ResponseEntity<>(service.findAllData(), HttpStatus.OK);
+    public Response findAllData() {
+        List<PeminjamanDTO> data = service.findAllData();
+        return new Response(data,"Get All Data Peminjaman", HttpStatus.OK) ;
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody PeminjamanDTO param){
-        return new ResponseEntity<>(service.save(param),HttpStatus.OK);
+    public Response saveData(@RequestBody PeminjamanDTO param) {
+
+        if (service.save(param) == null) {
+            return new Response("Data Peminjaman Tidak Ditemukan", HttpStatus.BAD_GATEWAY);
+        }
+        return new Response(service.save(param),"Data Berhasil Di Tambahkan", HttpStatus.OK);
     }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?>updateData(@PathVariable Long id,
                                        @RequestBody PeminjamanDTO param){
@@ -43,14 +50,12 @@ public class PeminjamanController {
         return  new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<?>deleteData(@PathVariable Long id){
-        if (service.delete(id)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else
-        {
-            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+    @DeleteMapping("/delete/{id}")
+    public Response deleteData(@PathVariable Long id) {
+        if (service.delete(id)) {
+            return new Response("Data Berhasil di Hapus", HttpStatus.OK);
+        } else {
+            return new Response("Data Gagal di Hapus", HttpStatus.BAD_REQUEST);
         }
     }
 

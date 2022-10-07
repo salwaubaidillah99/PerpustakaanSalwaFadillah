@@ -1,12 +1,14 @@
 package com.salwafadillah.TugasAkhirSinauKoding.controller;
 
-import com.salwafadillah.TugasAkhirSinauKoding.entity.Pengarang;
+import com.salwafadillah.TugasAkhirSinauKoding.common.Response;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PengarangDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.PengarangServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/pengarangs")
@@ -16,41 +18,42 @@ public class PengarangController {
     private PengarangServiceImpl service;
 
     @GetMapping("/find-all")
-    public ResponseEntity<?> findAllData(){
-        return new ResponseEntity<>(service.findAllData(), HttpStatus.OK);
+    public Response findAllData() {
+        List<PengarangDTO> data = service.findAllData();
+        return new Response(data,"Get All Data Pengarang", HttpStatus.OK) ;
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?>saveData(@RequestBody PengarangDTO param){
-        return new ResponseEntity<>(service.save(param),HttpStatus.OK);
+    public Response saveData(@RequestBody PengarangDTO param) {
+
+        if (service.save(param) == null) {
+            return new Response("Data Pengarang Tidak Ditemukan", HttpStatus.BAD_GATEWAY);
+        }
+        return new Response(service.save(param),"Data Berhasil Di Tambahkan", HttpStatus.OK);
     }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<?>updateData(@PathVariable Long id,
-                                       @RequestBody PengarangDTO param){
+    public ResponseEntity<?> updateData(@PathVariable Long id,
+                                        @RequestBody PengarangDTO param) {
         PengarangDTO data = service.update(param, id);
 
-        if (data != null){
-            return  new ResponseEntity<>(data, HttpStatus.OK);
-        }
-        else
-        {
-            return  new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
-        }
-    }
-    @GetMapping("/find-by-id/{id}")
-    public ResponseEntity<?>findById(@PathVariable Long id){
-        return  new ResponseEntity<>(service.findById(id), HttpStatus.OK);
-    }
-
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<?>deleteData(@PathVariable Long id){
-        if (service.delete(id)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else
-        {
+        if (data != null) {
+            return new ResponseEntity<>(data, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
     }
 
+    public Response findById(@PathVariable Long id){
+        return new Response(service.findById(id), "Berhasil Mengabil Data dari id " + id, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Response deleteData(@PathVariable Long id) {
+        if (service.delete(id)) {
+            return new Response("Data Berhasil di Hapus", HttpStatus.OK);
+        } else {
+            return new Response("Data Gagal di Hapus", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
