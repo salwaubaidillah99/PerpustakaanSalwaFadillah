@@ -1,9 +1,15 @@
 package com.salwafadillah.TugasAkhirSinauKoding.service.Impl;
 
+import com.salwafadillah.TugasAkhirSinauKoding.entity.Anggota;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.Petugas;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.User;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.AnggotaDTO;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.PetugasDTO;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.AnggotaMapping;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.PetugasMapping;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.mapping.UserMapping;
 import com.salwafadillah.TugasAkhirSinauKoding.repository.PetugasRepository;
+import com.salwafadillah.TugasAkhirSinauKoding.repository.UserRepository;
 import com.salwafadillah.TugasAkhirSinauKoding.service.PetugasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +21,21 @@ public class PetugasServiceImpl implements PetugasService {
     @Autowired
     private PetugasRepository repository;
 
-    @Override
+    @Autowired
+    UserRepository userRepository;
+
     public PetugasDTO save(PetugasDTO param) {
-        Petugas data = repository.save(PetugasMapping.instance.toEntity(param));
+        User user = UserMapping.instance.toEntity(param.getUser());
+
+        Petugas data = PetugasMapping.instance.toEntity(param);
+
+        if (param.getUser() !=null){
+            user = userRepository.save(user);
+
+            data.getUser().setId(user.getId());
+        }
+        data=repository.save(data);
+
         return PetugasMapping.instance.toDto(data);
     }
 

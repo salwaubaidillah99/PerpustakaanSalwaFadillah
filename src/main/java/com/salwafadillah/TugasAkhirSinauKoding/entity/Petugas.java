@@ -30,6 +30,9 @@ public class Petugas {
     @OneToMany(mappedBy = "petugas")
     private List<Pengembalian> pengembalianList;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 }
-

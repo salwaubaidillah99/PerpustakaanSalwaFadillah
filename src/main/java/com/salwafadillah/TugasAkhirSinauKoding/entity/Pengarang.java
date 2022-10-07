@@ -30,4 +30,3 @@ public class Pengarang {
     private List<Buku> bukuList;
 
 }
-

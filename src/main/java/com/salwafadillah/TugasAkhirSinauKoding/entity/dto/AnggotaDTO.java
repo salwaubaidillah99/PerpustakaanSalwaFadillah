@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AnggotaDTO {
+
     private Long id;
 
     private String namaAnggota;
@@ -15,4 +16,6 @@ public class AnggotaDTO {
     private String alamat;
 
     private String noTelp;
+
+    private UserDTO user;
 }

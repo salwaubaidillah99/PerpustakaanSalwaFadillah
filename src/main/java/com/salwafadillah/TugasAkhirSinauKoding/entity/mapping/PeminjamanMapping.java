@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface PeminjamanMapping {
+
     PeminjamanMapping instance = Mappers.getMapper(PeminjamanMapping.class);
 
     Peminjaman toEntity(PeminjamanDTO dto);
@@ -15,5 +16,6 @@ public interface PeminjamanMapping {
     PeminjamanDTO toDto(Peminjaman param);
 
     List<PeminjamanDTO>toListDto(List<Peminjaman>peminjamanList);
+
 }
 

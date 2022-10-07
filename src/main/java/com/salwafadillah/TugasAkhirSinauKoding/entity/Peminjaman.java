@@ -6,13 +6,14 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "peminjamans")
 @Getter
 @Setter
-public class Peminjaman {
+public class Peminjaman  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "integer")
@@ -38,7 +39,7 @@ public class Peminjaman {
             name = "peminjamanDetail",
             joinColumns = @JoinColumn(name="peminjaman_id"),
             inverseJoinColumns = @JoinColumn(name ="buku_id"))
-            Set<Peminjaman>detailPeminjaman=new HashSet<>();
+    Set<Peminjaman>detailPeminjaman=new HashSet<>();
 
 
 }

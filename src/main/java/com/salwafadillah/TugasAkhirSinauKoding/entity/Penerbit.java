@@ -28,7 +28,5 @@ public class Penerbit {
     @OneToMany(mappedBy = "penerbit")
     private List<Buku> bukuList;
 
-
-
 }
 

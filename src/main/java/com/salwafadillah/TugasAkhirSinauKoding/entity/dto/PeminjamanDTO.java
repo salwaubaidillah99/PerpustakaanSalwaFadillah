@@ -17,4 +17,5 @@ public class PeminjamanDTO {
 
     private PetugasDTO petugas;
 
+
 }

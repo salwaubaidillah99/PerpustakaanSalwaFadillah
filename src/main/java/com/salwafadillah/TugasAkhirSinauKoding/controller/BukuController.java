@@ -1,7 +1,10 @@
 package com.salwafadillah.TugasAkhirSinauKoding.controller;
 
 import com.salwafadillah.TugasAkhirSinauKoding.entity.Buku;
+import com.salwafadillah.TugasAkhirSinauKoding.entity.Peminjaman;
 import com.salwafadillah.TugasAkhirSinauKoding.entity.dto.BukuDTO;
+import com.salwafadillah.TugasAkhirSinauKoding.repository.BukuRepository;
+import com.salwafadillah.TugasAkhirSinauKoding.repository.PeminjamanRepository;
 import com.salwafadillah.TugasAkhirSinauKoding.service.Impl.BukuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,4 +57,6 @@ public class BukuController {
     }
 
 }
+
+
 
