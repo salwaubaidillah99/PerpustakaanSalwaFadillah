@@ -14,16 +14,16 @@ import java.util.List;
 public class Pengarang {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "BIGINT(11)")
+    @Column(columnDefinition = "BIGINT")
     private Long id;
 
-    @Column(columnDefinition = "VARCHAR(30)")
+    @Column
     private String namaPengarang;
 
-    @Column(columnDefinition = "VARCHAR(13)")
+    @Column
     private String noTelp;
 
-    @Column(columnDefinition = "VARCHAR(100)")
+    @Column
     private String alamat;
 
     @OneToMany(mappedBy = "pengarang")
